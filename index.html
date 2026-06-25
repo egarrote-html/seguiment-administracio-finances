@@ -63,7 +63,7 @@
 <div class="container">
   <div class="header">
     <h1>Seguiment de programació</h1>
-    <p>Cicle d'Administració i Finances · Curs 2025–2026</p>
+    <p>Cicle de Administració i Finances · Curs 2025-2026</p>
   </div>
   <div class="steps" id="steps-bar">
     <span class="step-dot active" id="s1">1</span>
@@ -124,30 +124,29 @@
   </div>
 </div>
 <div class="toast" id="toast"></div>
-
 <iframe name="hidden-iframe" style="display:none"></iframe>
-
 <script>
-const SCRIPT_URL = "https://script.google.com/a/macros/intermunicipal.cat/s/AKfycbyvC9WjG_hykrqHSixDBlC19p7rEph2TlsUTOGBvzAoPdNvyzIhjtZtvHTvbysutwNj3g/exec";
+const SCRIPT_URL = "https://script.google.com/a/macros/intermunicipal.cat/s/AKfycby5nWVGusAoJlb6yCrnyPLxLkxQXzgAmZufk5O_eV0AwyI23bwmaCWoSiqB9rrFjhrTug/exec";
+const PESTANYA = "AF";
 const MODULS = [
-  { codi:"0647", nom:"Gestió de la documentació jurídica i empresarial", ra:5 },
-  { codi:"0648", nom:"Recursos humans i responsabilitat social corporativa", ra:5 },
-  { codi:"0649", nom:"Ofimàtica i procés de la informació", ra:9 },
-  { codi:"0650", nom:"Procés integral de l'activitat comercial", ra:7 },
-  { codi:"0651", nom:"Comunicació i atenció al client", ra:7 },
-  { codi:"0652", nom:"Gestió de recursos humans", ra:4 },
-  { codi:"0653", nom:"Gestió financera", ra:6 },
-  { codi:"0654", nom:"Comptabilitat i fiscalitat", ra:6 },
-  { codi:"0655", nom:"Gestió logística i comercial", ra:5 },
-  { codi:"0656", nom:"Simulació empresarial", ra:6 },
-  { codi:"C076", nom:"Català professional", ra:4 },
-  { codi:"0179", nom:"Anglès professional", ra:5 },
-  { codi:"1665", nom:"Digitalització aplicada als sectors productius", ra:6 },
-  { codi:"1708", nom:"Sostenibilitat aplicada al sistema productiu", ra:6 },
-  { codi:"1709", nom:"Itinerari personal per a l'ocupabilitat I", ra:5 },
-  { codi:"1710", nom:"Itinerari personal per a l'ocupabilitat II", ra:5 },
-  { codi:"0657", nom:"Projecte intermodular d'administració i finances", ra:4 },
-  { codi:"OPT", nom:"Mòdul professional optatiu", ra:3 },
+  {"codi":"0647","nom":"Gestió de la documentació jurídica i empresarial","ra":5},
+  {"codi":"0648","nom":"Recursos humans i responsabilitat social corporativa","ra":5},
+  {"codi":"0649","nom":"Ofimàtica i procés de la informació","ra":9},
+  {"codi":"0650","nom":"Procés integral de l'activitat comercial","ra":7},
+  {"codi":"0651","nom":"Comunicació i atenció al client","ra":7},
+  {"codi":"0652","nom":"Gestió de recursos humans","ra":4},
+  {"codi":"0653","nom":"Gestió financera","ra":6},
+  {"codi":"0654","nom":"Comptabilitat i fiscalitat","ra":6},
+  {"codi":"0655","nom":"Gestió logística i comercial","ra":5},
+  {"codi":"0656","nom":"Simulació empresarial","ra":6},
+  {"codi":"C076","nom":"Català professional","ra":4},
+  {"codi":"0179","nom":"Anglès professional","ra":5},
+  {"codi":"1665","nom":"Digitalització aplicada als sectors productius","ra":6},
+  {"codi":"1708","nom":"Sostenibilitat aplicada al sistema productiu","ra":6},
+  {"codi":"1709","nom":"Itinerari personal per a l'ocupabilitat I","ra":5},
+  {"codi":"1710","nom":"Itinerari personal per a l'ocupabilitat II","ra":5},
+  {"codi":"0657","nom":"Projecte intermodular d'administració i finances","ra":4},
+  {"codi":"OPT","nom":"Mòdul professional optatiu","ra":3}
 ];
 const sel = document.getElementById("modul");
 MODULS.forEach(m => { const o = document.createElement("option"); o.value = m.codi; o.textContent = m.codi + " · " + m.nom; sel.appendChild(o); });
@@ -161,9 +160,8 @@ function carregarRA() {
   document.getElementById("summary-card").classList.add("hidden");
   if (!modul) return;
   for (let i = 1; i <= modul.ra; i++) {
-    const div = document.createElement("div");
-    div.className = "ra-block";
-    div.innerHTML = `<div class="ra-header"><span class="ra-title">RA ${i}</span><span class="pct-badge pct-neutral" id="badge-${i}">—</span></div><div class="ra-grid"><div><label>Hores programades</label><input type="number" min="0" step="0.5" id="prog-${i}" placeholder="0" oninput="calcPct(${i})"></div><div><label>Hores realitzades</label><input type="number" min="0" step="0.5" id="real-${i}" placeholder="0" oninput="calcPct(${i})"></div></div><div class="extra-block" id="extra-${i}"><div style="margin-bottom:0.5rem"><label id="mlbl-${i}">Motius</label><textarea id="motius-${i}" placeholder="..."></textarea></div><div><label>Proposta de mesures correctores</label><textarea id="mesures-${i}" placeholder="Quines mesures es proposen per al proper curs?"></textarea></div></div>`;
+    const div = document.createElement("div"); div.className = "ra-block";
+    div.innerHTML = '<div class="ra-header"><span class="ra-title">RA '+i+'</span><span class="pct-badge pct-neutral" id="badge-'+i+'">—</span></div><div class="ra-grid"><div><label>Hores programades</label><input type="number" min="0" step="0.5" id="prog-'+i+'" placeholder="0" oninput="calcPct('+i+')"></div><div><label>Hores realitzades</label><input type="number" min="0" step="0.5" id="real-'+i+'" placeholder="0" oninput="calcPct('+i+')"></div></div><div class="extra-block" id="extra-'+i+'"><div style="margin-bottom:0.5rem"><label id="mlbl-'+i+'">Motius</label><textarea id="motius-'+i+'" placeholder="..."></textarea></div><div><label>Proposta de mesures correctores</label><textarea id="mesures-'+i+'" placeholder="Quines mesures es proposen per al proper curs?"></textarea></div></div>';
     cont.appendChild(div);
   }
 }
@@ -232,28 +230,12 @@ function enviar() {
     const pct=prog>0?Math.round((real/prog)*100):0;
     ras.push({num:"RA "+i, prog, real, pct, motius:document.getElementById("motius-"+i)?.value||"", mesures:document.getElementById("mesures-"+i)?.value||""});
   }
-  const payload={
-    nom:document.getElementById("nom").value.trim(),
-    email:document.getElementById("email").value.trim(),
-    curs:document.getElementById("curs").value,
-    modul:codi+" · "+modul.nom,
-    observacions:document.getElementById("observacions").value,
-    ras
-  };
-
+  const payload={nom:document.getElementById("nom").value.trim(), email:document.getElementById("email").value.trim(), curs:document.getElementById("curs").value, modul:codi+" · "+modul.nom, observacions:document.getElementById("observacions").value, pestanya:PESTANYA, ras};
   const form = document.createElement("form");
-  form.method = "POST";
-  form.action = SCRIPT_URL;
-  form.target = "hidden-iframe";
+  form.method = "POST"; form.action = SCRIPT_URL; form.target = "hidden-iframe";
   const input = document.createElement("input");
-  input.type = "hidden";
-  input.name = "data";
-  input.value = JSON.stringify(payload);
-  form.appendChild(input);
-  document.body.appendChild(form);
-  form.submit();
-  document.body.removeChild(form);
-
+  input.type = "hidden"; input.name = "data"; input.value = JSON.stringify(payload);
+  form.appendChild(input); document.body.appendChild(form); form.submit(); document.body.removeChild(form);
   setTimeout(() => {
     document.getElementById("page3").classList.add("hidden");
     document.getElementById("steps-bar").classList.add("hidden");
